@@ -1,0 +1,32 @@
+<%- include("partials/header.ejs") %>
+
+<div class="contianer ">
+    <div class="row p-3">
+        <div class="col border rounded shadow py-3 px-5">
+            <form action="/newpost" method="post" enctype="multipart/form-data">
+                <div class="w-100">
+                    <label for=""><b>Title :</b> </label><br>
+                    <input type="text" name="title" class="w-100" required>
+                </div><br>
+              <div class="w-100">
+                <label for=""><b>Body :</b>  </label><br>
+                <textarea class="w-100" name="body" id="" cols="30" rows="2" required></textarea>
+              </div>
+              <br>
+             <div>
+                <label for=""> <b> Upload Image :</b></label><br>
+                <input type="file" name="image" id="imageInput" onchange="displayThumbnail()" required>
+             </div>
+             <br> <br>
+             <div class="text-center">
+                <img src="images/placeholder.jpg"   id="thumbnail" class="post_image rounded" alt="this is an image">
+             </div>
+             <br>
+              <input type="submit" value="Submit" class="btn btn-secondary mb-3 animation1">
+           
+            </form>
+        </div>
+    </div>
+</div>
+  <script src="/myScript.js"></script>
+<%- include("partials/footer.ejs") %>

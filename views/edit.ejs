@@ -1,0 +1,33 @@
+<!-- include the header -->
+<%- include("partials/header.ejs") %>
+<div class="contianer">
+    <div class="row p-3">
+        <div class="col border rounded shadow py-3 px-5">
+            <!-- using a form and  methodOveride for saying that our request is put not post -->
+                <form action="/updated/<%= data.id %>?method=PUT" method="POST"  enctype="multipart/form-data" >
+                <div class="w-100">
+                    <label for=""><b>Title :</b> </label><br>  
+                    <input type="text" name="title" class="w-100" value="<%= data.name %>" required>
+                </div><br>
+              <div class="w-100">
+                <label for=""><b>Body :</b>  </label><br>
+                <textarea class="w-100" name="body" id=""  cols="30" rows="2"  required><%= data.description %></textarea>
+              </div>
+             <div class="row">
+                <div class="col-sm-6"><h6>Current Image</h6></div>
+                <div class="col-sm-6 pt-5"><img src="<%= data.images %>"  id="thumbnail"  class="post_image rounded" alt="this is an image"></div>
+             </div>
+             <div>
+                <label> <b> change Image :</b></label><br>
+                <input type="file" name="image" id="imageInput" onchange="displayThumbnail()" >
+             </div>
+             <br>
+              <input type="submit" value="Update"  class="btn btn-secondary mb-3">
+           
+            </form>
+        </div>
+    </div>
+</div>
+<script src="/myScript.js"></script>
+<!-- include footer -->
+<%- include("partials/footer.ejs") %>

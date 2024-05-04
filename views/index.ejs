@@ -1,0 +1,46 @@
+<%- include("partials/header.ejs") %>
+<h2 class="mb-3">Last Posts</h2>
+<!-- here I put condition that according the variables one of them will be appears in the browser -->
+<% if(locals.message){%>
+    <div class="div" style="background-color: aquamarine;"><span class="p-2" style="color: rgb(4, 87, 51);">✔ <%= locals.text %></span></div> 
+ <% }else if(locals.Dmessage){ %>
+    <div class="div deleteM" style="background-color: rgb(235, 96, 96);"><span  class="p-2" style="color: white;"> ❌ <%= locals.text %></span></div> 
+ <% }else if (locals.Emessage){ %>
+    <div class="div" style="background-color: aquamarine;"><span class="p-2" style="color: rgb(4, 87, 51);"> ✔ <%= locals.text %></span></div> 
+    <% } %>
+<ul class="pl-0 pb-3 color ">
+    <!-- here I used forEach method to display all the objcts in my array to li items -->
+<% data.forEach(item => { %>
+    <li class="mb-3 ">
+        <div class="container border rounded shadow itemcolor mb-2">
+            <div class="row ">
+                <div class="col-sm-6 d-flex flex-column pt-3 row-gap-3  justify-content-between">
+                    <div >
+                        <h3><%= item.name %></h3>
+                        <p class="mb-5"><%= item.description %></p>
+                    </div>
+                </div>
+                <div class="col-sm-6 d-flex justify-content-center flex-column align-items-center ">
+                <img class="img rounded shadow-sm py-auto" src="<%= item.images %>" alt="">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col ">
+                <div class="flex gap-2 my-3 border p-3 shadow rounded">
+                   <!-- this form is used to send the delete request-->
+                        <form id="deleteForm" action="/delete/<%= item.id %>?method=DELETE" method="POST" class="d-inline-block">
+                        <button id="delte"  name="deleteButton"  class="btn btn-danger text-white my-1">Delete</button>
+                    </form>
+                    <!-- this form is used to send the update request-->
+                    <form action="/edit/<%= item.id %>" method="get" class="d-inline-block">
+                        <button  class="btn btn-primary text-white my-1" name="edit" value=<% item.name %>>Edit</button>
+                    </form>
+                  </div>
+            </div>
+        </div>
+        </div>
+    </li>
+<% }); %>
+</ul>
+<script src="/myScript.js"></script>
+<%- include("partials/footer.ejs") %>
