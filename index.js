@@ -58,7 +58,7 @@ app.post("/newpost", upload.single("image"), (req, res) => {
   let body = req.body.body;
   const imagePath = req.file.path;
   // Remove the extra 'images' directory from imagePath
-  const correctedImagePath = imagePath.replace('public\\', '').replace(/\\/g, '/');
+  const correctedImagePath = imagePath.replace('public/', '').replace(/\\/g, '/');
 // here I push the new object to my last array data
   data.push({ id: newId++, name: title, description: body, images: `/${correctedImagePath}` });
   console.log(data);
@@ -109,7 +109,7 @@ app.put("/updated/:id", upload.single("image"), (req, res) => {
   selectedItem.description = body;
   if (req.file) {
     // If a new image is uploaded, update the image path
-    selectedItem.images = '/'+req.file.path.replace('public\\', '').replace(/\\/g, '/');
+    selectedItem.images = '/'+req.file.path.replace('public/', '').replace(/\\/g, '/');
   }
   if (
     selectedItem.name !== originalItem.name ||
