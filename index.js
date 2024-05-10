@@ -6,6 +6,8 @@ import multer from 'multer';
 const app=express();
 // useing port 3000
 const port=3000;
+// used this middleware for our static files
+app.use(express.static("public"));
 // my data
 let data=[
     {id:1, name:"Front-End Development",description:" I got this certificate from CTI(Code To Inspire) for completing 15 months web development.",images:"/images/font-end.jpg"},
@@ -19,8 +21,7 @@ let data=[
 ]
 // I made this variable because of making the id for new posts
 let newId=data.length+1;
-// used this middleware for our static files
-app.use(express.static("public"));
+
 // using multer for uploding images
 const storage = multer.diskStorage({
  // here I determine where my images should be save
