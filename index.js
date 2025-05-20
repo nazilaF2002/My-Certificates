@@ -2,7 +2,8 @@
 import express from 'express';
 import methodOverride from "method-override";
 import multer from 'multer';
-import data from './data.js';
+import originalData from './data.js';
+let data = [...originalData];
 // making the application
 const app=express();
 // useing port 3000
@@ -46,11 +47,12 @@ app.get('/new_post',(req,res)=>{
 app.post("/newpost", upload.single("image"), (req, res) => {
   let title = req.body.title;
   let body = req.body.body;
-  const imagePath = req.file.path;
+  // const imagePath = req.file.path;
   // Remove the extra 'images' directory from imagePath
-  const correctedImagePath = imagePath.replace('public/', '').replace(/\\/g, '/');
+  // const correctedImagePath = imagePath.replace('public/', '').replace(/\\/g, '/');
+  const correctedImagePath = `/images/${req.file.filename}`;
 // here I push the new object to my last array data
-  data.push({ id: newId++, name: title, description: body, images: `/${correctedImagePath}` });
+  data.push({ id: newId++, name: title, description: body, images: `${correctedImagePath}` });
   console.log(data);
   // here I made a variable and setTimeout method for showing and hideing the notification message
   let message=true;

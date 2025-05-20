@@ -1,4 +1,4 @@
-const data=[
+let data=[
     {id:1, name:"Front-End Development",description:" I got this certificate from CTI(Code To Inspire) for completing 15 months web development.",images:"/images/font-end.jpg"},
     {id:2, name:"Web Development",description:"I got this certificate from USC(University of Southern California) for comleting introduction to web development course.",images:"/images/html.jpg"},
     {id:3, name:"English",description:"I got this certificate from JRS(Jesuit WorldWide Learining) for completing intermediate level.",images:"/images/intermedaite.jpg"},
