@@ -4,7 +4,8 @@
     <div class="row p-3">
         <div class="col border rounded shadow py-3 px-5">
             <!-- using a form and  methodOveride for saying that our request is put not post -->
-                <form action="/updated/<%= data.id %>?method=PUT" method="POST"  enctype="multipart/form-data" >
+                <form action="/edit/<%= data.id %>?method=PUT" method="POST"  enctype="multipart/form-data" >
+                <!-- <form action="/updated/<%= data.id %>?method=PUT" method="POST"  enctype="multipart/form-data" > -->
                 <div class="w-100">
                     <label for=""><b>Title :</b> </label><br>  
                     <input type="text" name="title" class="w-100" value="<%= data.name %>" required>
