@@ -3,13 +3,14 @@ let data = [...originalData];
 
 // I made this variable because of making the id for new posts
 let newId = data.length + 1;
+
 export const createPost = async (req, res) => {
   try {
     let title = req.body.title;
     let body = req.body.body;
     const correctedImagePath = `/images/${req.file.filename}`;
     // here I push the new object to my last array data
-    data.push({
+     await data.push({
       id: newId++,
       name: title,
       description: body,
@@ -30,7 +31,7 @@ export const createPost = async (req, res) => {
 
 export const getPostpage = async (req, res) => {
   try {
-    res.render("post.ejs");
+     await res.render("post.ejs");
   } catch (err) {}
 };
 
@@ -40,7 +41,7 @@ export const getAllposts = async (req, res) => {
     let text = req.query.text;
     let Dmessage = req.query.Dmessage;
     let message = req.query.message;
-    res.render("index.ejs", {
+      await res.render("index.ejs", {
       data: data,
       Emessage: Emessage,
       text: text,
@@ -53,10 +54,10 @@ export const getAllposts = async (req, res) => {
   }
 };
 
-export const getpost = (req, res) => {
+export const getpost = async(req, res) => {
   try {
     const itemId = req.params.id;
-    const selectedItem = data.find((item) => item.id == itemId);
+    const selectedItem = await data.find((item) => item.id == itemId);
     if (!selectedItem) {
       // Handle the case where no item is found with the given id
       return res.status(404).send("Item not found");
@@ -68,12 +69,12 @@ export const getpost = (req, res) => {
   }
 };
 
-export const updatePost = (req, res) => {
+export const updatePost = async(req, res) => {
   try {
     let title = req.body.title;
     let body = req.body.body;
     let id = req.params.id;
-    const selectedItem1 = data.find((item) => item.id == id);
+    const selectedItem1 = await data.find((item) => item.id == id);
     // Store the original item
     const originalItem = { ...selectedItem1 };
     selectedItem1.name = title;
@@ -102,9 +103,9 @@ export const updatePost = (req, res) => {
   }
 };
 
-export const deletePost = (req, res) => {
+export const deletePost = async (req, res) => {
   try {
-    data = data.filter((post) => {
+    data = await data.filter((post) => {
       if (post.id != req.params.id) {
         return post;
       }
@@ -114,5 +115,7 @@ export const deletePost = (req, res) => {
       Dmessage = false;
     }, 5000);
     res.redirect("/?Dmessage=true&&text=Post deleted Successfully");
-  } catch (err) {}
+  } catch (err) {
+    console.log('delete post error',err);
+  }
 };
